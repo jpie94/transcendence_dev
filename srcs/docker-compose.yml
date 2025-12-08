@@ -1,4 +1,3 @@
-
 services:
   backend:
     image: backend
@@ -7,6 +6,7 @@ services:
     container_name: backend
     volumes:
       - backend_volume:/usr/src/app
+      - ./requirements/backend/app/src:/app/src
       - /usr/src/app/node_modules
     ports:
       - 3000:3000
