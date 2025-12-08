@@ -6,7 +6,7 @@ import { sendJSON } from "../sendJSON";
 /* 
         <div>
           <div class="avatar avatar-lg default nb-rounded">
-            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="avatar" class="nb-rounded">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Haroun" alt="avatar" class="nb-rounded">
           </div>
         </div>
 */
@@ -17,11 +17,11 @@ export function renderProfile(): string {
       <h1 class="text-2xl mb-6">Profile</h1>
       <form id="profileForm" data-action="profile.update" class="flex flex-col gap-2 w-full max-w-xs">
 
-        <div class="flex justify-center mb-4">
+        <div class="flex justify-center mb-2">
           <!-- <div class="relative group cursor-pointer" onclick="document.getElementById('avatarInput').click()"> -->
           <div class="relative group cursor-pointer" onclick="document.getElementsByName('avatar')[0].click()">
           <div class="nb-avatar nb-avatar-lg default nb-rounded overflow-hidden">
-              <img id="avatarPreview" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="avatar" class="nb-rounded object-cover w-full h-full">
+              <img id="avatarPreview" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Haroun" alt="avatar" class="nb-rounded object-cover w-full h-full">
               <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity nb-rounded">
                 <i class="fa fa-camera text-white"></i>
               </div>
@@ -61,7 +61,13 @@ export function renderProfile(): string {
           placeholder="Confirm password"
           class="nb-input default nb-rounded"
         />
-        <button type="submit" class="nb-button warning nb-rounded">Update</button>
+
+        <label class="nb-label">
+          <input type="checkbox" name="2fa" class="nb-checkbox warning">
+            <span>Enable Two-Factor Authentication</span>
+        </label>
+
+        <button type="submit" class="nb-button success nb-rounded">Update</button>
       </form>
 
       <form id="eraseForm" data-action="profile.erase" class="flex flex-col gap-2 w-full max-w-xs">          

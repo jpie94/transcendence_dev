@@ -25,6 +25,7 @@ export function renderForgotPassword(): string {
     `;
 }
 
+
 registerSubmit("forgotpassword.submit", async (_e: Event) => {
   // e.preventDefault();
 

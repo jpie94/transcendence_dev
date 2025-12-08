@@ -21,6 +21,12 @@ export function renderSignUp(): string {
           class="nb-input default nb-rounded"
         />
         <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          class="nb-input default nb-rounded"
+        />
+        <input
           name="password"
           type="password"
           placeholder="Password"
@@ -51,15 +57,17 @@ export function renderSignUp(): string {
 
 registerSubmit("signup.submit", async (_e: Event) => {
   // e.preventDefault();
-
+  
   const email = (document.getElementsByName("email")[0] as HTMLInputElement).value;
   const username = (document.getElementsByName("username")[0] as HTMLInputElement).value;
   const password = (document.getElementsByName("password")[0] as HTMLInputElement).value;
   const passwordConfirm = (document.getElementsByName("passwordConfirm")[0] as HTMLInputElement).value;
   const res = await sendJSON("/api/signup", { username, email, password, passwordConfirm });
-
+  
   if (res.ok)
     window.location.href = "/signin";
-  else
+  else {
+    console.log(document.getElementsByName("email")[0] as HTMLInputElement);
     console.log("Sign up failed");
+  }
 });

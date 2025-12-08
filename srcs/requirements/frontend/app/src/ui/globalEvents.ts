@@ -1,6 +1,8 @@
 // ui/globalEvents.ts
 
-import { registerClick, registerKeydown } from "../core/events";
+// import { registerClick, registerKeydown } from "../core/events";
+import { registerClick } from "../core/events";
+import { closeDialog, isDialogOpen } from "./dialog";
 import { navigate } from "../router";
 import { closeNavbar, isNavbarOpen } from "./navbar";
 
