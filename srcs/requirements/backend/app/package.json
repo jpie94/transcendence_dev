@@ -4,10 +4,7 @@
   "type": "module",
   "main": "dist/server.js",
   "scripts": {
-    "_dev_old": "ts-node src/server.ts",
-    "dev": "node --loader ts-node/esm src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "dev": "node --loader ts-node/esm src/server.ts"
   },
   "dependencies": {
     "fastify": "^4.27.0",
