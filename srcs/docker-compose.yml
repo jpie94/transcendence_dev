@@ -1,18 +1,18 @@
 
 services:
-  # backend:
-  #   image: backend
-  #   build:
-  #     context: ./requirements/backend
-  #   container_name: backend
-  #   volumes:
-  #     - backend_volume:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #   ports:
-  #     - 3000:3000
-  #   restart: always
-  #   networks:
-  #     - network
+  backend:
+    image: backend
+    build:
+      context: ./requirements/backend
+    container_name: backend
+    volumes:
+      - backend_volume:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    restart: always
+    networks:
+      - network
 
   frontend:
     image: frontend

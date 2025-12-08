@@ -3,7 +3,7 @@ all: up
 _volumes-dir:
 	@mkdir -p /tmp/data
 	@mkdir -p /tmp/data/frontend
-	@mkdir -p /tmp/data/sqlite
+	@mkdir -p /tmp/data/backend
 
 up: _volumes-dir
 	@docker compose -f srcs/docker-compose.yml up --build -d

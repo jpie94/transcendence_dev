@@ -46,8 +46,6 @@ COPY conf/default.dev.conf /etc/nginx/sites-available/default
 # Copier le fichier de configuration de supervisor
 COPY conf/supervisor.conf /etc/supervisor/conf.d/supervisor.conf 
 
-RUN npm run build
-
 EXPOSE 443
 # EXPOSE 5173
 

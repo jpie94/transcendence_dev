@@ -1,4 +1,12 @@
 #!/bin/sh
 set -e
 
-exec nginx -g 'daemon off;'
+if [ "$MODE" = "prod" ]; then
+    # cp -r /app/dist/* /var/www/html/
+    exec gosu www-data nginx -g 'daemon off;'
+else
+    exec supervisord -n
+fi
+
+
+# exec "$@"

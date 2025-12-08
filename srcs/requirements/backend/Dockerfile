@@ -31,13 +31,13 @@ RUN		useradd -m -s /bin/bash nodeuser
 WORKDIR	/app
 
 # Copy package.json + package-lock.json first
-COPY	package*.json ./
+COPY  app/package*.json ./
 
 # Install dependencies (express sera installé ici)
 RUN		npm install
 
 # Copy remaining code (app.js, public/, etc.)
-COPY	. .
+COPY	app .
 
 # Create data directory an give permissions
 RUN		mkdir -p /data && chown -R nodeuser:nodeuser /app /data
