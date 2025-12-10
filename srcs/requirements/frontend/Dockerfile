@@ -1,4 +1,3 @@
-# Étape 1 : génération du certificat
 FROM debian:bookworm AS certs
 
 RUN apt-get update && apt-get install -y openssl \
@@ -17,9 +16,8 @@ RUN apt-get update && apt-get install -y openssl \
 
 FROM debian:bookworm
 
-# Installer Node + Nginx
 RUN apt-get update && apt-get install -y openssl nano procps \
-	curl ca-certificates gnupg nginx build-essential supervisor netcat-traditional \
+	curl ca-certificates gnupg nginx build-essential netcat-traditional \
 	&& mkdir -p /etc/apt/keyrings \
 	&& curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
 		| gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
@@ -29,27 +27,17 @@ RUN apt-get update && apt-get install -y openssl nano procps \
 	&& apt-get update && apt-get install -y nodejs \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
 WORKDIR /app
-COPY app/package*.json ./
-RUN npm install
 COPY app .
+RUN npm i
+RUN npm run build
 
-# Copier les certificats
 COPY --from=certs /output/server.crt /etc/ssl/certs/localhost.crt
 COPY --from=certs /output/server.key /etc/ssl/certs/localhost.key
 
-# Copier le fichier de config Nginx en fonction du mode
-# COPY conf/default.${MODE}.conf /etc/nginx/conf.d/default
 COPY conf/default.dev.conf /etc/nginx/sites-available/default
-
-# Copier le fichier de configuration de supervisor
-COPY conf/supervisor.conf /etc/supervisor/conf.d/supervisor.conf 
-
 EXPOSE 443
-# EXPOSE 5173
 
 ADD tools /tmp/tools
 RUN chmod +x /tmp/tools/entrypoint.sh
-
 ENTRYPOINT ["/tmp/tools/entrypoint.sh"]
