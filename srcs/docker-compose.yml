@@ -5,9 +5,7 @@ services:
       context: ./requirements/backend
     container_name: backend
     volumes:
-      - backend_volume:/usr/src/app
-      - ./requirements/backend/app/src:/app/src
-      - /usr/src/app/node_modules
+      - ./requirements/backend/app:/app
     ports:
       - 3000:3000
     restart: always
@@ -37,12 +35,6 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/tmp/data/frontend'
-  backend_volume:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/tmp/data/backend'
 
 networks:
   network:
